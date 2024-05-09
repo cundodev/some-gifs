@@ -15,7 +15,7 @@ export default function Hero() {
       <div className='mt-auto rotate-[160deg]'>
         <Arrow />
       </div>
-      <picture className='hidden max-w-80 overflow-hidden rounded-lg md:block'>
+      <picture className='hidden  w-80 overflow-hidden rounded-lg md:block md:aspect-video'>
         <img className='object-contain' src={HERO_GIF} alt='hero image' />
       </picture>
     </section>
