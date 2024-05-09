@@ -6,7 +6,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color-scheme: dark;
   color: CanvasTex;
-  background-color: black;
+  background-color: rgb(10 10 10 / 1);
 }
 @layer components {
   .text-shadow {
