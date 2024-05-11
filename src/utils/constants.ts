@@ -11,16 +11,16 @@ export const badgeColors = [
     border: '#D6A609',
   },
   {
-    bg: '#77DD77',
-    border: '#3F704D',
+    bg: '#5DD780',
+    border: '#19D34E',
   },
   {
     bg: '#FF6961',
-    border: '#A33E3E',
+    border: '#BD1A1A',
   },
   {
-    bg: '#FFA07A',
-    border: '#CD5C5C',
+    bg: '#5A42B7',
+    border: '#4C21EF',
   },
   {
     bg: '#FFD700',
@@ -31,8 +31,8 @@ export const badgeColors = [
     border: '#4169E1',
   },
   {
-    bg: '#98FB98',
-    border: '#2E8B57',
+    bg: '#DF50BF',
+    border: '#E129B7',
   },
   {
     bg: '#FF6347',
