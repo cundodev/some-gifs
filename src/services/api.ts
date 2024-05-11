@@ -1,4 +1,4 @@
-import { Gif, TrendingTerms } from '@/types'
+import { Gif, GifData, TrendingTerms } from '@/types'
 import { API_KEY, BASE_URL } from './settings'
 
 export async function getTrendingTerms(): Promise<TrendingTerms> {
@@ -19,10 +19,14 @@ export async function getTrendingTerms(): Promise<TrendingTerms> {
   }
 }
 
-export async function getGifs({ keyword }: { keyword: string }): Promise<Gif> {
+export async function getGifs({
+  keyword,
+}: {
+  keyword: string
+}): Promise<Gif[]> {
   try {
     const response = await fetch(
-      `${BASE_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=5`,
+      `${BASE_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=10`,
     )
     if (!response.ok) {
       throw new Error(
@@ -30,7 +34,7 @@ export async function getGifs({ keyword }: { keyword: string }): Promise<Gif> {
       )
     }
     const { data } = await response.json()
-    const gifs = data.map((gif: Gif) => {
+    const gifs = data.map((gif: GifData) => {
       const { images, title, id } = gif
       const { url, webp, height, width } = images.fixed_height
       return { title, id, url, webp, height, width }

@@ -1,6 +1,6 @@
 export type TrendingTerms = string[]
 
-export interface Gif {
+export interface GifData {
   type: string
   id: string
   url: string
@@ -23,6 +23,15 @@ export interface Gif {
   analytics_response_payload: string
   analytics: Analytics
   alt_text: string
+}
+
+export interface Gif {
+  id: string
+  url: string
+  title: string
+  height: string
+  width: string
+  webp: string
 }
 
 export interface Analytics {
