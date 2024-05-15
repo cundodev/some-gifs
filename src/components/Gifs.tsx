@@ -2,16 +2,17 @@ import { Gif } from '@/types'
 
 export default function Gifs({ gifs }: { gifs: Gif[] }) {
   return (
-    <section className=' flex max-w-5xl flex-wrap gap-2 '>
+    <section className='columns-auto gap-2 sm:columns-2 md:columns-3'>
       {gifs.map((gif) => (
-        <div key={gif.id}>
+        <picture key={gif.id}>
           <img
             src={gif.webp}
             alt={gif.title}
-            width={gif.width}
             height={gif.height}
+            width={gif.width}
+            className='mb-2'
           />
-        </div>
+        </picture>
       ))}
     </section>
   )
