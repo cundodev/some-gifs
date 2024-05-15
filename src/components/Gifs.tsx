@@ -2,7 +2,7 @@ import { Gif } from '@/types'
 
 export default function Gifs({ gifs }: { gifs: Gif[] }) {
   return (
-    <section className=' flex max-w-5xl flex-wrap gap-2 p-6'>
+    <section className=' flex max-w-5xl flex-wrap gap-2 '>
       {gifs.map((gif) => (
         <div key={gif.id}>
           <img
