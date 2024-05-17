@@ -36,7 +36,7 @@ export async function getGifs({
     const { data } = await response.json()
     const gifs = data.map((gif: GifData) => {
       const { images, title, id } = gif
-      const { url, webp, height, width } = images.original
+      const { url, webp, height, width } = images.fixed_height
       return { title, id, url, webp, height, width }
     })
     return gifs
