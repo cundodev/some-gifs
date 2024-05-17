@@ -9,7 +9,9 @@ export default function Gifs({ gifs }: { gifs: Gif[] }) {
             src={gif.webp}
             alt={gif.title}
             height={gif.height}
-            className='mb-2 w-full'
+            width={gif.width}
+            className='mb-2 w-full rounded-lg bg-slate-600'
+            loading='lazy'
           />
         </picture>
       ))}
