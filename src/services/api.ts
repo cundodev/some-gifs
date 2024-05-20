@@ -21,12 +21,14 @@ export async function getTrendingTerms(): Promise<TrendingTerms> {
 
 export async function getGifs({
   keyword,
+  rating,
 }: {
   keyword: string
+  rating: string
 }): Promise<Gif[]> {
   try {
     const response = await fetch(
-      `${BASE_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=10`,
+      `${BASE_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&rating=${rating}&limit=10`,
     )
     if (!response.ok) {
       throw new Error(

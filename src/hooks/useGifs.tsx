@@ -10,7 +10,10 @@ export default function useGifs() {
 
   useEffect(() => {
     setLoading(true)
-    getGifs({ keyword: searchParams.get('q') || 'tokyo' })
+    getGifs({
+      keyword: searchParams.get('q') || 'tokyo',
+      rating: searchParams.get('rating') || 'g',
+    })
       .then(setGifs)
       .finally(() => setLoading(false))
   }, [searchParams, setGifs])
