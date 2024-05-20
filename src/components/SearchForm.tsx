@@ -10,14 +10,21 @@ export default function SearchForm() {
 
   function handleSubmit(evt: FormEvent<HTMLFormElement>): void {
     evt.preventDefault()
+
     const data = new FormData(evt.currentTarget)
     const query = data.get('query') as string
     const rating = data.get('rating') as string
+
+    if (!query.trim()) return
+
     navigate(`/search?q=${query}&rating=${rating}`)
   }
   function handleChange(evt: ChangeEvent<HTMLSelectElement>) {
     const query = searchParams.get('q')
+    if (query == null) return
+
     const rating = evt.currentTarget.value
+
     navigate(`/search?q=${query}&rating=${rating}`)
   }
 
@@ -40,7 +47,7 @@ export default function SearchForm() {
         </button>
       </div>
       <select
-        className='ml-auto w-fit rounded-lg bg-fuchsia-600 p-2 text-center text-sm'
+        className='ml-auto w-fit rounded-lg bg-fuchsia-600 p-2 text-sm'
         name='rating'
         defaultValue={searchParams.get('rating') || ''}
         onChange={handleChange}
@@ -49,7 +56,7 @@ export default function SearchForm() {
           Rating:
         </option>
         {RATINGS.map((rating) => (
-          <option className='semi-bold' key={rating} value={rating}>
+          <option className='semi-bold px-2' key={rating} value={rating}>
             {rating.toLocaleUpperCase()}
           </option>
         ))}
