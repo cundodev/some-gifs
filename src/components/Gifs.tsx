@@ -3,9 +3,10 @@ import { Heart, HeartFill } from './Icons'
 import { useState } from 'react'
 
 export default function Gifs({ gifs }: { gifs: Gif[] }) {
-  const [favorites, setFavorites] = useState<Map<Gif['id'], Gif>>(
-    () => new Map(),
-  )
+  const [favorites, setFavorites] = useState<Map<Gif['id'], Gif>>(() => {
+    const storeFavorites = window.localStorage.getItem('favorites')
+    return storeFavorites ? new Map(JSON.parse(storeFavorites)) : new Map()
+  })
 
   function handleClick(currentGif: Gif) {
     const draft = structuredClone(favorites)
@@ -15,6 +16,12 @@ export default function Gifs({ gifs }: { gifs: Gif[] }) {
     } else {
       draft.set(currentGif.id, currentGif)
     }
+
+    window.localStorage.setItem(
+      'favorites',
+      JSON.stringify(Array.from(draft.entries())),
+    )
+
     setFavorites(draft)
   }
 
@@ -22,8 +29,8 @@ export default function Gifs({ gifs }: { gifs: Gif[] }) {
     <section className='h-full w-full columns-auto gap-2 sm:columns-2 md:columns-3'>
       <ul>
         {gifs.map((gif) => (
-          <li className='relative'>
-            <picture key={gif.id}>
+          <li className='relative' key={gif.id}>
+            <picture>
               <img
                 src={gif.webp}
                 alt={gif.title}
