@@ -10,10 +10,15 @@ export default function SearchForm() {
 
   function handleSubmit(evt: FormEvent<HTMLFormElement>): void {
     evt.preventDefault()
-
     const data = new FormData(evt.currentTarget)
     const query = data.get('query') as string
     const rating = data.get('rating') as string
+
+    const lastSearch = {
+      query,
+      rating,
+    }
+    window.localStorage.setItem('lastSearch', JSON.stringify(lastSearch))
 
     if (!query.trim()) return
 
