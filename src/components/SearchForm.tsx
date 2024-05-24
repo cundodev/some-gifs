@@ -52,12 +52,12 @@ export default function SearchForm() {
         </button>
       </div>
       <select
-        className='ml-auto w-fit rounded-lg bg-fuchsia-600 p-2 text-sm'
+        className='ml-auto w-fit rounded-lg  bg-[#422733] p-2 text-sm'
         name='rating'
         defaultValue={searchParams.get('rating') || ''}
         onChange={handleChange}
       >
-        <option className='font-bold' disabled>
+        <option className='font-bold ' disabled>
           Rating:
         </option>
         {RATINGS.map((rating) => (
