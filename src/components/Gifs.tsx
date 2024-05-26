@@ -22,7 +22,7 @@ export default function Gifs({ gifs }: { gifs: Gif[] }) {
             </picture>
             <button
               className='absolute right-2 top-2 z-10 rounded-full bg-black/20 p-2 hover:text-red-500'
-              onClick={() => toggleFavorite(gif)}
+              onClick={() => toggleFavorite(gif.id)}
             >
               {favorites.has(gif.id) ? <HeartFill /> : <Heart />}
             </button>
