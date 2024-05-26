@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 export default function useGifs() {
-  const { gifs, setGifs } = useContext(GifContext)
+  const { gifs, updateGifs } = useContext(GifContext)
   const [loading, setLoading] = useState<boolean>(false)
   const [searchParams] = useSearchParams()
 
@@ -14,9 +14,9 @@ export default function useGifs() {
       keyword: searchParams.get('q') || 'tokyo',
       rating: searchParams.get('rating') || 'g',
     })
-      .then(setGifs)
+      .then(updateGifs)
       .finally(() => setLoading(false))
-  }, [searchParams, setGifs])
+  }, [searchParams, updateGifs])
 
   return { gifs, searchParams, loading }
 }

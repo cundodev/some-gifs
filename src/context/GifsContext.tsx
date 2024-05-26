@@ -3,25 +3,28 @@ import { createContext, ReactNode, useState } from 'react'
 
 interface GifContextType {
   gifs: Gif[]
-  setGifs: React.Dispatch<React.SetStateAction<Gif[]>>
+  updateGifs: (gif: Gif[]) => void
   favorites: Map<Gif['id'], Gif>
   toggleFavorite: (currentGif: Gif) => void
 }
 
 export const GifContext = createContext<GifContextType>({
   gifs: [],
-  setGifs: () => {},
+  updateGifs: () => {},
   favorites: new Map(),
   toggleFavorite: () => {},
 })
 
 export function GifsContextProvider({ children }: { children: ReactNode }) {
   const [gifs, setGifs] = useState<Gif[]>([])
-
   const [favorites, setFavorites] = useState<Map<Gif['id'], Gif>>(() => {
     const storeFavorites = window.localStorage.getItem('favorites')
     return storeFavorites ? new Map(JSON.parse(storeFavorites)) : new Map()
   })
+
+  function updateGifs(gif: Gif[]) {
+    setGifs(gif)
+  }
 
   function toggleFavorite(currentGif: Gif) {
     const draft = structuredClone(favorites)
@@ -40,7 +43,9 @@ export function GifsContextProvider({ children }: { children: ReactNode }) {
     setFavorites(draft)
   }
   return (
-    <GifContext.Provider value={{ gifs, setGifs, favorites, toggleFavorite }}>
+    <GifContext.Provider
+      value={{ gifs, updateGifs, favorites, toggleFavorite }}
+    >
       {children}
     </GifContext.Provider>
   )
