@@ -47,3 +47,32 @@ export async function getGifs({
     throw error
   }
 }
+
+export async function getFavorites({
+  favs,
+}: {
+  favs: Gif['id'][]
+}): Promise<Gif[]> {
+  try {
+    const ids = favs.join(',')
+
+    const response = await fetch(
+      `${BASE_URL}/gifs?api_key=${API_KEY}&ids=${ids}`,
+    )
+    if (!response.ok) {
+      throw new Error(
+        `Error getting data (${response.status}: ${response.statusText})`,
+      )
+    }
+    const { data } = await response.json()
+    const gifs = data.map((gif: GifData) => {
+      const { images, title, id } = gif
+      const { url, webp, height, width } = images.fixed_height
+      return { title, id, url, webp, height, width }
+    })
+    return gifs
+  } catch (error) {
+    console.error('Request Error:', error)
+    throw error
+  }
+}
