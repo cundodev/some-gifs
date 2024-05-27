@@ -3,9 +3,12 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router.tsx'
 import { GifsContextProvider } from './context/GifsContext.tsx'
+import { FavsContextProvider } from './context/FavsContext.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <GifsContextProvider>
-    <RouterProvider router={router} />
+    <FavsContextProvider>
+      <RouterProvider router={router} />
+    </FavsContextProvider>
   </GifsContextProvider>,
 )
