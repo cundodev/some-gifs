@@ -6,7 +6,7 @@ export default function useFavorites() {
   const { favsStorage, toggleFavorite, favorites, setFavorites } = useContext(FavsContext)
 
   useEffect(() => {
-    if (favsStorage.size === 0 || favorites.length === 0) return
+    if (favsStorage.size === 0) return
     getFavorites({ favs: [...favsStorage.values()] }).then(setFavorites)
   }, [])
 
