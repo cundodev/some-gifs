@@ -3,7 +3,7 @@ import { Heart, HeartFill } from './Icons'
 import useFavorites from '@/hooks/useFavorites'
 
 export default function Gifs({ gifs }: { gifs: Gif[] }) {
-  const { favorites, toggleFavorite } = useFavorites()
+  const { favsStorage, toggleFavorite } = useFavorites()
 
   return (
     <section className='h-full w-full columns-auto gap-2 sm:columns-2 md:columns-3'>
@@ -24,7 +24,7 @@ export default function Gifs({ gifs }: { gifs: Gif[] }) {
               className='absolute right-2 top-2 z-10 rounded-full bg-black/20 p-2 hover:text-red-500'
               onClick={() => toggleFavorite(gif.id)}
             >
-              {favorites.has(gif.id) ? <HeartFill /> : <Heart />}
+              {favsStorage.has(gif.id) ? <HeartFill /> : <Heart />}
             </button>
           </li>
         ))}

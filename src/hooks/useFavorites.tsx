@@ -1,7 +1,14 @@
 import { FavsContext } from '@/context/FavsContext'
-import { useContext } from 'react'
+import { getFavorites } from '@/services/api'
+import { useContext, useEffect } from 'react'
 
 export default function useFavorites() {
-  const { favorites, toggleFavorite } = useContext(FavsContext)
-  return { favorites, toggleFavorite }
+  const { favsStorage, toggleFavorite, favorites, setFavorites } = useContext(FavsContext)
+
+  useEffect(() => {
+    if (favsStorage.size === 0 || favorites.length === 0) return
+    getFavorites({ favs: [...favsStorage.values()] }).then(setFavorites)
+  }, [])
+
+  return { favsStorage, toggleFavorite, favorites, setFavorites }
 }
