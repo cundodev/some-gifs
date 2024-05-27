@@ -18,10 +18,5 @@ export function GifsContextProvider({ children }: { children: ReactNode }) {
     setGifs(gif)
   }, [])
 
-  console.log('context gifs')
-  return (
-    <GifContext.Provider value={{ gifs, updateGifs }}>
-      {children}
-    </GifContext.Provider>
-  )
+  return <GifContext.Provider value={{ gifs, updateGifs }}>{children}</GifContext.Provider>
 }

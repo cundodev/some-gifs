@@ -37,8 +37,6 @@ export function FavsContextProvider({ children }: { children: ReactNode }) {
     setFavsStorage(draft)
   }
 
-  console.log('context favs')
-
   return (
     <FavsContext.Provider value={{ favorites, setFavorites, favsStorage, toggleFavorite }}>
       {children}
