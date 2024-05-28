@@ -24,6 +24,7 @@ export default function SearchForm() {
 
     navigate(`/search?q=${query}&rating=${rating}`)
   }
+
   function handleChange(evt: ChangeEvent<HTMLSelectElement>) {
     const query = searchParams.get('q')
     if (query == null) return
@@ -34,10 +35,7 @@ export default function SearchForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className='flex w-full scroll-m-6 flex-col gap-4 sm:flex-row'
-    >
+    <form onSubmit={handleSubmit} className='flex w-full scroll-m-6 flex-col gap-4 sm:flex-row'>
       <div className='flex flex-1'>
         <input
           type='search'
@@ -52,7 +50,7 @@ export default function SearchForm() {
         </button>
       </div>
       <select
-        className='ml-auto w-fit rounded-lg  bg-[#422733] p-2 text-sm'
+        className='ml-auto w-fit rounded-lg bg-[#422733] p-2 text-sm'
         name='rating'
         defaultValue={searchParams.get('rating') || ''}
         onChange={handleChange}
