@@ -1,10 +1,7 @@
 import type { Gif } from '@/types'
-import { Heart, HeartFill } from './Icons'
-import useFavorites from '@/hooks/useFavorites'
+import FavButton from './FavButton'
 
 export default function Gifs({ gifs }: { gifs: Gif[] }) {
-  const { favsStorage, toggleFavorite } = useFavorites()
-
   return (
     <main className='flex w-full max-w-5xl flex-col items-center gap-8 p-6'>
       <section className='h-full w-full columns-auto gap-2 sm:columns-2 md:columns-3'>
@@ -21,12 +18,7 @@ export default function Gifs({ gifs }: { gifs: Gif[] }) {
                   loading='lazy'
                 />
               </picture>
-              <button
-                className='absolute right-2 top-2 z-10 rounded-full bg-black/20 p-2 hover:text-red-500'
-                onClick={() => toggleFavorite(gif.id)}
-              >
-                {favsStorage.has(gif.id) ? <HeartFill /> : <Heart />}
-              </button>
+              <FavButton id={gif.id} />
             </li>
           ))}
         </ul>
