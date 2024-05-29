@@ -4,7 +4,7 @@ import TrendingSearchTerms from '@/components/TrendingSearchTerms'
 
 export default function Home() {
   return (
-    <main className='flex w-full max-w-5xl flex-col items-center gap-8 px-6 py-10'>
+    <main className='flex max-w-5xl flex-col items-center gap-8 px-6 py-10'>
       <Hero />
       <SearchForm />
       <TrendingSearchTerms />

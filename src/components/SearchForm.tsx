@@ -35,14 +35,14 @@ export default function SearchForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex w-full scroll-m-6 flex-col gap-4 sm:flex-row'>
+    <form onSubmit={handleSubmit} className='flex w-full flex-col gap-4 sm:flex-row'>
       <div className='flex flex-1'>
         <input
           type='search'
           id='query'
           name='query'
           placeholder='Happy, Anime, The Avengers,...'
-          className='w-full rounded-l-lg bg-white bg-opacity-10 p-2'
+          className='w-full rounded-l-lg bg-white/10 p-2'
           defaultValue={searchParams.get('q') || ''}
         />
         <button className='rounded-r-lg bg-fuchsia-600 p-2 text-center'>
