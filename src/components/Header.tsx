@@ -16,7 +16,7 @@ export default function Header() {
       {favsStorage.size > 0 && (
         <NavLink
           to='/favorites'
-          className='flex h-full w-full items-center rounded-md border border-fuchsia-600 px-4 py-2 hover:text-fuchsia-500 sm:w-fit'
+          className='flex h-full w-full items-center justify-center rounded-md border-2 border-fuchsia-600 px-4 py-2 hover:text-fuchsia-500 sm:w-fit'
         >
           <HeartFill />
         </NavLink>

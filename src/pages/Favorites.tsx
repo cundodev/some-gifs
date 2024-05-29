@@ -9,7 +9,7 @@ export default function Favorites() {
     <>
       <Header />
       {favorites.length === 0 ? (
-        <main className='flex w-full max-w-5xl flex-col items-center gap-8 p-6'>
+        <main className='flex w-full max-w-5xl flex-1 flex-col items-center gap-8 p-6'>
           <section className='flex w-full flex-1 items-center justify-center rounded-md border border-dashed p-6'>
             <p>
               Your <span className='font-semibold text-pink-600'>favorites</span> list is empty!
