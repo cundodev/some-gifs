@@ -1,9 +1,9 @@
 import { Gif } from '@/types'
-import { createContext, ReactNode, useCallback, useState } from 'react'
+import { createContext, ReactNode, useState } from 'react'
 
 interface GifContextType {
   gifs: Gif[]
-  updateGifs: (gif: Gif[]) => void
+  updateGifs: React.Dispatch<React.SetStateAction<Gif[]>>
 }
 
 export const GifContext = createContext<GifContextType>({
@@ -14,9 +14,5 @@ export const GifContext = createContext<GifContextType>({
 export function GifsContextProvider({ children }: { children: ReactNode }) {
   const [gifs, setGifs] = useState<Gif[]>([])
 
-  const updateGifs = useCallback((gif: Gif[]) => {
-    setGifs(gif)
-  }, [])
-
-  return <GifContext.Provider value={{ gifs, updateGifs }}>{children}</GifContext.Provider>
+  return <GifContext.Provider value={{ gifs, updateGifs: setGifs }}>{children}</GifContext.Provider>
 }
