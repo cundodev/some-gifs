@@ -2,13 +2,13 @@ import type { Gif } from '@/types'
 import FavButton from './FavButton'
 export default function Gifs({ gifs }: { gifs: Gif[] }) {
   return (
-    <main className='flex w-full max-w-5xl flex-col items-center gap-8 p-6'>
+    <main className='flex min-w-full max-w-5xl flex-col items-center gap-8 p-6'>
       <section className='h-full w-full'>
         <ul className='flex flex-wrap gap-2'>
-          {gifs.map((gif) => (
+          {gifs.map((gif, index) => (
             <li
               className='relative flex-auto'
-              key={gif.id}
+              key={gif.id + index}
               style={{ width: `${gif.width}px`, minHeight: `${gif.height}px` }}
             >
               <picture>
