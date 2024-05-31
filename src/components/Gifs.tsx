@@ -1,20 +1,23 @@
 import type { Gif } from '@/types'
 import FavButton from './FavButton'
-
 export default function Gifs({ gifs }: { gifs: Gif[] }) {
   return (
     <main className='flex w-full max-w-5xl flex-col items-center gap-8 p-6'>
-      <section className='h-full w-full columns-auto gap-2 sm:columns-2 md:columns-3'>
-        <ul>
+      <section className='h-full w-full'>
+        <ul className='flex flex-wrap gap-2'>
           {gifs.map((gif) => (
-            <li className='relative' key={gif.id}>
+            <li
+              className='relative flex-auto'
+              key={gif.id}
+              style={{ width: `${gif.width}px`, minHeight: `${gif.height}px` }}
+            >
               <picture>
                 <img
                   src={gif.webp}
                   alt={gif.title}
                   height={gif.height}
                   width={gif.width}
-                  className='mb-2 w-full rounded-lg bg-slate-600'
+                  className='h-full w-full rounded-lg bg-pink-900'
                   loading='lazy'
                 />
               </picture>
@@ -26,3 +29,4 @@ export default function Gifs({ gifs }: { gifs: Gif[] }) {
     </main>
   )
 }
+//columns-auto gap-2 sm:columns-2 md:columns-3
