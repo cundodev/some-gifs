@@ -3,13 +3,9 @@ import { API_KEY, BASE_URL } from './settings'
 
 export async function getTrendingTerms(): Promise<TrendingTerms> {
   try {
-    const response = await fetch(
-      `${BASE_URL}/trending/searches?api_key=${API_KEY}`,
-    )
+    const response = await fetch(`${BASE_URL}/trending/searches?api_key=${API_KEY}`)
     if (!response.ok) {
-      throw new Error(
-        `Error getting data (${response.status}: ${response.statusText})`,
-      )
+      throw new Error(`Error getting data (${response.status}: ${response.statusText})`)
     }
     const { data } = await response.json()
     return data
@@ -20,20 +16,22 @@ export async function getTrendingTerms(): Promise<TrendingTerms> {
 }
 
 export async function getGifs({
-  keyword,
-  rating,
+  keyword = 'Anime',
+  rating = 'g',
+  limit = 10,
+  page = 0,
 }: {
   keyword: string
-  rating: string
+  rating?: string
+  limit?: number
+  page?: number
 }): Promise<Gif[]> {
   try {
     const response = await fetch(
-      `${BASE_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&rating=${rating}&limit=10`,
+      `${BASE_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&rating=${rating}&limit=${limit}&offset=${page * limit}`,
     )
     if (!response.ok) {
-      throw new Error(
-        `Error getting data (${response.status}: ${response.statusText})`,
-      )
+      throw new Error(`Error getting data (${response.status}: ${response.statusText})`)
     }
     const { data } = await response.json()
     const gifs = data.map((gif: GifData) => {
@@ -48,21 +46,13 @@ export async function getGifs({
   }
 }
 
-export async function getFavorites({
-  favs,
-}: {
-  favs: Gif['id'][]
-}): Promise<Gif[]> {
+export async function getFavorites({ favs }: { favs: Gif['id'][] }): Promise<Gif[]> {
   try {
     const ids = favs.join(',')
 
-    const response = await fetch(
-      `${BASE_URL}/gifs?api_key=${API_KEY}&ids=${ids}`,
-    )
+    const response = await fetch(`${BASE_URL}/gifs?api_key=${API_KEY}&ids=${ids}`)
     if (!response.ok) {
-      throw new Error(
-        `Error getting data (${response.status}: ${response.statusText})`,
-      )
+      throw new Error(`Error getting data (${response.status}: ${response.statusText})`)
     }
     const { data } = await response.json()
     const gifs = data.map((gif: GifData) => {
