@@ -16,7 +16,6 @@ export default function Search() {
   return (
     <>
       <Header />
-      <button onClick={() => updatePage((prev) => prev + 1)}>Next Page</button>
       <Gifs gifs={gifs} />
       <div ref={visor} />
     </>
