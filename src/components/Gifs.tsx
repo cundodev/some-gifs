@@ -6,11 +6,7 @@ export default function Gifs({ gifs }: { gifs: Gif[] }) {
       <section className='h-full w-full'>
         <ul className='flex flex-wrap gap-2'>
           {gifs.map((gif, index) => (
-            <li
-              className='relative flex-auto'
-              key={gif.id + index}
-              style={{ width: `${gif.width}px`, minHeight: `${gif.height}px` }}
-            >
+            <li className='relative flex-auto' key={gif.id + index} style={{ width: `${gif.width}px` }}>
               <picture>
                 <img
                   src={gif.webp}
