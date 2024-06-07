@@ -5,7 +5,7 @@ interface NearScreen {
   visor: React.RefObject<HTMLDivElement>
   once?: boolean
 }
-export default function useNearScreen({ distance = '10px', visor, once = true }: NearScreen) {
+export default function useNearScreen({ distance = '500px', visor, once = true }: NearScreen) {
   const [isNearScreen, setIsNearScreen] = useState<boolean>(false)
 
   useEffect(() => {
