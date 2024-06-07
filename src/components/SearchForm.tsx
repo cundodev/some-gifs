@@ -45,7 +45,7 @@ export default function SearchForm() {
           className='w-full rounded-l-lg bg-white/10 p-2'
           defaultValue={searchParams.get('q') || ''}
         />
-        <button className='rounded-r-lg bg-fuchsia-600 p-2 text-center'>
+        <button className='rounded-r-lg bg-pink-600 p-2 text-center'>
           <SearchIcon />
         </button>
       </div>
