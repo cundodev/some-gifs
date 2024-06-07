@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-import SearchForm from './SearchForm'
 //import useFavorites from '@/hooks/useFavorites'
 //import { HeartFill } from './Icons'
 import Auth from './Auth'
@@ -11,9 +10,6 @@ export default function Header() {
       <NavLink to='/' className='text-shadow text-nowrap text-4xl font-bold hover:scale-105 sm:text-2xl '>
         Some Gifs.
       </NavLink>
-      <div className='w-full sm:w-2/3'>
-        <SearchForm />
-      </div>
       {/* {favsStorage.size > 0 && (
         <NavLink
           to='/favorites'
