@@ -8,9 +8,11 @@
   color: CanvasTex;
   background-color: rgb(10 10 10 / 1);
 }
+
 [popover]:popover-open::backdrop {
   background-color: rgb(0 0 0 / 0.75);
 }
+
 @layer components {
   .text-shadow {
     text-shadow: 5px 5px 5px #ff2e89;

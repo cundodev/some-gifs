@@ -26,19 +26,20 @@ export default function Auth() {
           </button>
           <button
             className='w-full text-nowrap rounded-md border border-pink-600 bg-pink-600 px-4 py-2 font-semibold text-pink-100'
-            popovertarget='signin'
+            popovertarget='signup'
           >
             Sign up
           </button>
         </div>
       )}
       <Signin />
+      <Signup />
     </div>
   )
 }
 
 function Signin() {
-  const { signin } = useAuth()
+  const { signin, user } = useAuth()
 
   async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault()
@@ -52,9 +53,36 @@ function Signin() {
       console.error('signup error: ', error)
     }
   }
+
+  if (user) return null
+
   return (
     <div id='signin' popover='auto' className='rounded-lg bg-neutral-950 p-4'>
       <AuthForm handleSubmit={handleSubmit} label='Sign in' />
+    </div>
+  )
+}
+
+function Signup() {
+  const { signup, user } = useAuth()
+
+  async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+    evt.preventDefault()
+    const data = new FormData(evt.currentTarget)
+    const email = data.get('email') as string
+    const password = data.get('password') as string
+
+    try {
+      await signup(email, password)
+    } catch (error) {
+      console.error('signup error: ', error)
+    }
+  }
+  if (user) return null
+
+  return (
+    <div id='signup' popover='auto' className='rounded-lg bg-neutral-950 p-4'>
+      <AuthForm handleSubmit={handleSubmit} label='Sign up' />
     </div>
   )
 }
