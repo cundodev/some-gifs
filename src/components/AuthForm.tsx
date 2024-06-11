@@ -1,3 +1,4 @@
+import useAuth from '@/hooks/useAuth'
 import { FormEventHandler } from 'react'
 
 export default function AuthForm({
@@ -7,19 +8,43 @@ export default function AuthForm({
   handleSubmit: FormEventHandler<HTMLFormElement>
   label: string
 }) {
+  const { google } = useAuth()
+
+  const handleGoogle = async () => {
+    try {
+      await google()
+    } catch (error) {
+      error instanceof Error && console.error(error.message)
+    }
+  }
+
   return (
-    <form className='flex flex-col gap-4 leading-6' onSubmit={handleSubmit}>
-      <label className='block'>
-        Email:
-        <input className='mt-2 w-full rounded-md px-2 py-2 ' type='email' name='email' placeholder='john@example.com' />
-      </label>
-      <label className='block'>
-        Password:
-        <input className='mt-2 w-full rounded-md px-2 py-2 ' type='password' name='password' placeholder='******' />
-      </label>
-      <button className='rounded-md bg-pink-600 px-4 py-2 font-semibold' type='submit'>
-        {label}
-      </button>
-    </form>
+    <div className='flex flex-col gap-4 divide-y divide-pink-400'>
+      <div>
+        <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
+          <label className='block'>
+            Email:
+            <input
+              className='mt-2 w-full rounded-md px-2 py-2 '
+              type='email'
+              name='email'
+              placeholder='john@example.com'
+            />
+          </label>
+          <label className='block'>
+            Password:
+            <input className='mt-2 w-full rounded-md px-2 py-2 ' type='password' name='password' placeholder='******' />
+          </label>
+          <button className='rounded-md bg-pink-600 px-4 py-2 font-semibold' type='submit'>
+            {label}
+          </button>
+        </form>
+      </div>
+      <div>
+        <button className='mt-4 w-full rounded-md border px-4 py-2 font-semibold' onClick={handleGoogle}>
+          Google
+        </button>
+      </div>
+    </div>
   )
 }
