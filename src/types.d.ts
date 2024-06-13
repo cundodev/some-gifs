@@ -91,3 +91,7 @@ export interface Pagination {
   count: number
   offset: number
 }
+
+export interface AmplifyError extends Error {
+  code?: string | number
+}

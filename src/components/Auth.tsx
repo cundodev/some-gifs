@@ -1,6 +1,7 @@
 import useAuth from '@/hooks/useAuth'
 import AuthForm from './AuthForm'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
+import { DEFAULT_ERROR_MESSAGE, ErrorMessage } from '@/utils/constants'
 
 export default function Auth() {
   const { user, logout } = useAuth()
@@ -39,6 +40,7 @@ export default function Auth() {
 }
 
 function Signin() {
+  const [error, setError] = useState<string>('')
   const { signin, user } = useAuth()
 
   async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
@@ -50,7 +52,10 @@ function Signin() {
     try {
       await signin(email, password)
     } catch (error) {
-      console.error('signup error: ', error)
+      if (error instanceof Error) {
+        console.error(ErrorMessage[error.code] || DEFAULT_ERROR_MESSAGE)
+        setError(ErrorMessage[error.code] || DEFAULT_ERROR_MESSAGE)
+      }
     }
   }
 
@@ -58,12 +63,13 @@ function Signin() {
 
   return (
     <div id='signin' popover='auto' className='rounded-lg bg-neutral-950 p-4'>
-      <AuthForm handleSubmit={handleSubmit} label='Sign in' />
+      <AuthForm handleSubmit={handleSubmit} label='Sign in' errorMessage={error} />
     </div>
   )
 }
 
 function Signup() {
+  const [error, setError] = useState<string>('')
   const { signup, user } = useAuth()
 
   async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
@@ -75,14 +81,17 @@ function Signup() {
     try {
       await signup(email, password)
     } catch (error) {
-      console.error('signup error: ', error)
+      if (error instanceof Error) {
+        console.error(ErrorMessage[error.code] || DEFAULT_ERROR_MESSAGE)
+        setError(ErrorMessage[error.code] || DEFAULT_ERROR_MESSAGE)
+      }
     }
   }
   if (user) return null
 
   return (
     <div id='signup' popover='auto' className='rounded-lg bg-neutral-950 p-4'>
-      <AuthForm handleSubmit={handleSubmit} label='Sign up' />
+      <AuthForm handleSubmit={handleSubmit} label='Sign up' errorMessage={error} />
     </div>
   )
 }

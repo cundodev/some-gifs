@@ -66,3 +66,16 @@ export const trendingTerms = [
   'more coffee',
   'im hungry',
 ]
+
+export const ErrorMessage: { [key: string]: string } = {
+  'auth/invalid-email': 'Email is invalid or already taken',
+  'auth/email-already-in-use': 'Email is invalid or already taken',
+  'auth/weak-password': 'Password should be at least 6 characters',
+  'auth/user-not-found': 'Email is invalid or User not found',
+  'auth/wrong-password': 'Email or Password wrong',
+  'auth/invalid-credential': 'Invalid email or password.\nPlease verify your login details and try again',
+  'auth/missing-password': 'Password is required.\nPlease enter your password to proceed',
+}
+
+export const DEFAULT_ERROR_MESSAGE =
+  'An error occurred during authentication.\nPlease try again later or contact support for assistance'
