@@ -3,6 +3,7 @@ import Search from './pages/Search'
 import Layout from './layout'
 import Home from './pages/Home'
 import Favorites from './pages/Favorites'
+import PrivateRoute from './components/PrivateRoute'
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +17,11 @@ export const router = createBrowserRouter([
       },
       {
         path: '/favorites',
-        element: <Favorites />,
+        element: (
+          <PrivateRoute>
+            <Favorites />
+          </PrivateRoute>
+        ),
       },
     ],
   },
