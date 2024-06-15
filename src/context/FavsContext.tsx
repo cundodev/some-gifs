@@ -1,5 +1,5 @@
 import { Gif } from '@/types'
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode, useCallback, useState } from 'react'
 
 interface FavsContextType {
   favsStorage: Set<Gif['id']>
@@ -22,20 +22,23 @@ export function FavsContextProvider({ children }: { children: ReactNode }) {
     return storeFavorites ? new Set(JSON.parse(storeFavorites)) : new Set()
   })
 
-  function toggleFavorite(id: Gif['id']) {
-    const draft = new Set(favsStorage)
+  const toggleFavorite = useCallback(
+    (id: Gif['id']) => {
+      const draft = new Set(favsStorage)
 
-    if (draft.has(id)) {
-      draft.delete(id)
-      setFavorites((prevState) => prevState.filter((gif) => gif.id !== id))
-    } else {
-      draft.add(id)
-    }
+      if (draft.has(id)) {
+        draft.delete(id)
+        setFavorites((prevState) => prevState.filter((gif) => gif.id !== id))
+      } else {
+        draft.add(id)
+      }
 
-    window.localStorage.setItem('favorites', JSON.stringify([...draft.values()]))
+      window.localStorage.setItem('favorites', JSON.stringify([...draft.values()]))
 
-    setFavsStorage(draft)
-  }
+      setFavsStorage(draft)
+    },
+    [favsStorage],
+  )
 
   return (
     <FavsContext.Provider value={{ favorites, setFavorites, favsStorage, toggleFavorite }}>
