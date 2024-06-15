@@ -1,5 +1,6 @@
 import Gifs from '@/components/Gifs'
 import Header from '@/components/Header'
+import SearchForm from '@/components/SearchForm'
 import useFavorites from '@/hooks/useFavorites'
 
 export default function Favorites() {
@@ -8,6 +9,9 @@ export default function Favorites() {
   return (
     <>
       <Header />
+
+      <SearchForm />
+
       {favorites.length === 0 ? (
         <main className='flex w-full max-w-5xl flex-1 flex-col items-center gap-8 p-6'>
           <section className='flex w-full flex-1 items-center justify-center rounded-md border border-dashed p-6'>

@@ -17,9 +17,9 @@ export default function Search() {
   return (
     <>
       <Header />
-      <div className='flex w-full flex-col gap-4 px-6 pt-6'>
+      <div className='flex w-full flex-col gap-4 '>
         <SearchForm />
-        <h3 className='text-3xl font-black'>{searchParams.get('q')?.toLocaleUpperCase()}</h3>
+        <h3 className='px-6 text-3xl font-black'>{searchParams.get('q')?.toLocaleUpperCase()}</h3>
       </div>
       <Gifs gifs={gifs} />
       <div ref={visor} />

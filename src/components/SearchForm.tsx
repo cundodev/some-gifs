@@ -3,8 +3,11 @@ import { SearchIcon } from './Icons'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 const RATINGS = ['g', 'pg', 'pg-13', 'r']
+interface Props {
+  className?: string
+}
 
-export default function SearchForm() {
+export default function SearchForm(props: Props) {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
 
@@ -35,7 +38,7 @@ export default function SearchForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex w-full flex-col gap-4 sm:flex-row'>
+    <form onSubmit={handleSubmit} className='flex w-full flex-col gap-4 px-6 pt-6 sm:flex-row'>
       <div className='flex flex-1'>
         <input
           type='search'

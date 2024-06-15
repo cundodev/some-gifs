@@ -9,7 +9,7 @@ export default function TrendingSearchTerms() {
   if (!trendingTerms) return null
 
   return (
-    <section className='group w-full max-w-5xl'>
+    <section className='group w-full max-w-5xl px-6'>
       <h2 className='mb-4 text-left text-xl font-semibold'>Trending Search Terms</h2>
       <div>
         <Marquee gradient gradientColor='#0a0a0a' gradientWidth={75} pauseOnHover speed={25} direction='right'>
