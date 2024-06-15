@@ -3,11 +3,8 @@ import { SearchIcon } from './Icons'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 const RATINGS = ['g', 'pg', 'pg-13', 'r']
-interface Props {
-  className?: string
-}
 
-export default function SearchForm(props: Props) {
+export default function SearchForm() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
 
